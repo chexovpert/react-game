@@ -15,6 +15,7 @@ function Menu() {
     { id: "Settings", title: "Settings" },
     { id: "About", title: "About" },
   ];
+  //console.log(styleObj)
   return (
     <section className={`${styleObj.menu} ${styleObj.menu_shown}`}>
       {menuItems.map((item) => {
