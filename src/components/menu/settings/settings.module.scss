@@ -1,45 +1,43 @@
 //@import '../sass/shadow-hover.scss';
 
 a {
-    text-decoration: none;
-  }
-  .settings-hidden {
-    transition: all 0.6s;
-    position: fixed;
-    top: -66vh;
-    left: 25vw;
-  }
-  
-  .settings_shown {
-    transition: all 0.6s;
-    position: fixed;
-    top: 29vh;
-    left: 25vw;
-  }
-  
-  .settings {
-    z-index: 1000;
-    background-color: rgba(239, 241, 234, 0.925);
-    width: 50vw;
-    height: 30vh;
-    display: flex;
-    justify-content: space-around;
-    font-size: 2rem;
-    align-items: center;
-    flex-direction: column;
-    border: 1px solid black;
-    transition: all 0.3s;
-  
-    div {
-      transition: all 0.3s;
-      cursor: pointer;
-      text-decoration: none;
-      &:hover {
-        color: gray;
-        text-decoration: underline;
-      }
-      //@include shadow-hover;
-    }
-    
-  }
-  
+  text-decoration: none;
+}
+.settings-hidden {
+  transition: all 0.6s;
+  position: fixed;
+  top: -66vh;
+  left: 25vw;
+}
+
+.settings_shown {
+  transition: all 0.6s;
+  position: fixed;
+  top: 10vh;
+  left: 25vw;
+}
+
+.settings {
+  z-index: 1000;
+  background-color: rgba(239, 241, 234, 0.925);
+  width: 50vw;
+  height: 70vh;
+  display: flex;
+  justify-content: space-around;
+  font-size: 2rem;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+  transition: all 0.3s;
+
+  // div {
+  //   transition: all 0.3s;
+  //   cursor: pointer;
+  //   text-decoration: none;
+  //   &:hover {
+  //     color: gray;
+  //     text-decoration: underline;
+  //   }
+  //   //@include shadow-hover;
+  // }
+}

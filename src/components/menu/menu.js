@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styleObj from "./menu.module.scss";
+import Button from "@material-ui/core/Button";
 
 function Menu() {
   const menuItems = [
@@ -28,9 +29,17 @@ function Menu() {
 function MenuItem({ props }) {
   return (
     <Link to={props.id}>
-      <div id={props.id} onClick={props.listener}>
+      {/* <div id={props.id} onClick={props.listener}>
         {props.title}
-      </div>
+      </div> */}
+      <Button
+        id={props.id}
+        onClick={props.listener}
+        variant="contained"
+        color="secondary"
+      >
+        {props.title}
+      </Button>
     </Link>
   );
 }
