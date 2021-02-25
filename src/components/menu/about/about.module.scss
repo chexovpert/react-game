@@ -25,16 +25,16 @@ a {
     border: 1px solid black;
     transition: all 0.3s;
   
-    div {
-      transition: all 0.3s;
-      cursor: pointer;
-      text-decoration: none;
-      &:hover {
-        color: gray;
-        text-decoration: underline;
-      }
-      //@include shadow-hover;
-    }
+    // div {
+    //   transition: all 0.3s;
+    //   cursor: pointer;
+    //   text-decoration: none;
+    //   &:hover {
+    //     color: gray;
+    //     text-decoration: underline;
+    //   }
+    //   //@include shadow-hover;
+    // }
     
   }
   

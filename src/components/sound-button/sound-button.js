@@ -15,7 +15,9 @@ export default () => {
   const config = useConfig();
   //console.log(config)
   //const [sound, setSound] = useState(config.soundOn)
-  const [music, setMusic] = useState(new Audio(MenuTheme));
+  console.log(MenuTheme)
+  //const [musicSrc, setMusicSrc] = useState(config.music);
+  const [music, setMusic] = useState(new Audio(config.music));
   //const [volume, setVolume] = useState(config.volume)
   music.volume = config.sound;
   music.autoplay = true;
@@ -29,8 +31,18 @@ export default () => {
     music.volume = config.volume;
   }, [config.volume]);
   useEffect(() => {
+      music.src=config.music;
+      //setMusic(new Audio(config.music))
+    if (config.sound) {
+        music.play();
+      } else {
+        music.pause();
+      }
+  }, [config.music]);
+  useEffect(() => {
     //config.sound = sound;
-    //console.log(config)
+    
+    console.log(config)
     if (config.sound) {
       music.play();
     } else {

@@ -14,6 +14,7 @@ export const useConfig =() => {
 export const ConfigProvider =({children}) => {
     const [volume, setVolume] = useState(config.volume)
     const [sound, setSound] = useState(config.soundOn)
+    const [music, setMusic] = useState(null)
 
     const volumeHandler = (volume) => {
         setVolume(volume);
@@ -24,12 +25,19 @@ export const ConfigProvider =({children}) => {
         config.soundOn=sound;
         console.log(config)
     }
+    const musicHandler = (music) => {
+        setMusic((music));
+        //config.soundOn=sound;
+        console.log(config)
+    }
     return (
     <ConfigContext.Provider value={{
         volume,
         volumeHandler,
         sound,
-        soundHandler
+        soundHandler,
+        music,
+        musicHandler,
 
     }}>
     {children}

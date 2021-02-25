@@ -2,8 +2,36 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styleObj from "./menu.module.scss";
 import Button from "@material-ui/core/Button";
+import MenuTheme from "../music/menutheme.mp3"
+import { useConfig } from "../config-file/config";
+import {makeStyles} from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    width: "auto",
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(620 + theme.spacing(6))]: {
+      width: 400,
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(
+      3
+    )}px`,
+  },
+}));
+
 
 function Menu() {
+  const classes = useStyles();
+  const config = useConfig();
+  config.musicHandler(MenuTheme)
   const menuItems = [
     {
       id: "Start",
@@ -18,11 +46,13 @@ function Menu() {
   ];
   //console.log(styleObj)
   return (
-    <section className={`${styleObj.menu} ${styleObj.menu_shown}`}>
+    // <section className={`${styleObj.menu} ${styleObj.menu_shown}`}>
+    <Paper className={classes.paper}>
       {menuItems.map((item) => {
         return <MenuItem props={item} key={item.id} />;
       })}
-    </section>
+      </Paper>
+    // </section>
   );
 }
 

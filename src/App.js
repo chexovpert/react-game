@@ -6,7 +6,8 @@ import Settings from "./components/menu/settings/settings";
 import Snake from "./components/game/snake";
 import Music from "./components/music/music";
 import ConfigProvider from "./components/config-file/config"
-import SoundButton from "./components/sound-button/sound-button"
+//import SoundButton from "./components/sound-button/sound-button"
+import Header from "./components/header/header"
 
 //const SettingContext = React.createContext()
 
@@ -14,7 +15,8 @@ const App = () => {
   return (
     <ConfigProvider>
     <Router>
-      <SoundButton></SoundButton>
+      <Header/>
+      {/* <SoundButton></SoundButton> */}
       <Route path="/" exact>
         <Menu ></Menu>
       </Route>

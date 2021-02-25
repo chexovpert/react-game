@@ -8,6 +8,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,11 +28,12 @@ const useStyles = makeStyles((theme) => ({
       3
     )}px`,
     paperArrow: {
-      padding: theme.spacing(2),
+     // padding: theme.spacing(2),
       textAlign: "center",
       color: theme.palette.text.secondary,
       display: "flex",
-      justifyItems: "center",
+      justifyContent: "center",
+      //flexDirection: "column",
       alignItems: "center",
     },
   },
@@ -53,7 +55,7 @@ export default () => {
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paperArrow}>
-            <ArrowDownwardIcon />
+            <ArrowDownwardIcon className={classes.paperArrow} />
           </Paper>
         </Grid>
         <Grid item xs={4}>
@@ -63,7 +65,7 @@ export default () => {
         </Grid>
       </Grid>
       <div>Use arrow keys to control snake</div>
-      <Link to="/">Menu</Link>
+      <Link to="/"><Button variant="contained" color="secondary">Menu</Button></Link>
     </Paper>
   );
 };

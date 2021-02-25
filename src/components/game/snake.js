@@ -8,9 +8,13 @@ import {
   SPEED,
   DIRECTIONS,
 } from "../../snake-start";
+import {useConfig} from "../config-file/config"
+import PlayTheme from "../music/playtheme.mp3"
 
 const Snake = () => {
   const canvasRef = useRef();
+  const config = useConfig();
+  config.musicHandler(PlayTheme)
 
   const [snake, setSnake] = useState(SNAKE_START);
   const [apple, setApple] = useState(APPLE_START);

@@ -18,6 +18,11 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
+import MenuTheme from "../../music/menutheme.mp3"
+//import { useConfig } from "../config-file/config";
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,8 +45,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default () => {
+    
   const classes = useStyles();
   const config = useConfig();
+  config.musicHandler(MenuTheme)
   //const [sound, setSound] = useState(config.volume*100)
   const handleSoundChange = (event, newValue) => {
     config.volumeHandler(newValue / 100);
