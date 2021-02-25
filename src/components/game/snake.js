@@ -10,11 +10,30 @@ import {
 } from "../../snake-start";
 import {useConfig} from "../config-file/config"
 import PlayTheme from "../music/playtheme.mp3"
+import Hud from "../music/doom/StatusBar.png"
+import useImage from "use-image"
+//import { Image } from 'react-konva';
 
+
+// function SimpleApp() {  
+  
+
+//   // "image" will DOM image element or undefined
+
+//   return (
+//     <Image image={image} />
+//   );
+// }
 const Snake = () => {
+  const [image] = useImage(Hud);
   const canvasRef = useRef();
   const config = useConfig();
-  config.musicHandler(PlayTheme)
+  
+  useEffect(()=> {
+    config.musicHandler(PlayTheme)
+    
+    
+  }, [])
 
   const [snake, setSnake] = useState(SNAKE_START);
   const [apple, setApple] = useState(APPLE_START);
@@ -87,24 +106,43 @@ const Snake = () => {
 
   useEffect(() => {
     const context = canvasRef.current.getContext("2d");
+    //context.width = document.body.clientWidth;
+    //context.height = document.body.clientHeight;
+    //console.log(hud)
+    
+    
+    //context.drawImage(hud, 100, 100)
     context.setTransform(SCALE, 0, 0, SCALE, 0, 0);
     context.clearRect(0, 0, CANVAS_SIZE[0], CANVAS_SIZE[1]);
+    const hud = new Image();
+    hud.src = 'https://s-media-cache-ak0.pinimg.com/236x/d7/b3/cf/d7b3cfe04c2dc44400547ea6ef94ba35.jpg';
+    
     context.fillStyle = "pink";
     snake.forEach(([x, y]) => context.fillRect(x, y, 1, 1));
+    //context.drawImage(hud, 100, 100)
+    hud.onload = function() {
+      context.drawImage(hud, 100, 100)
+} ()
     context.fillStyle = "lightblue";
     context.fillRect(apple[0], apple[1], 1, 1);
+    
   }, [snake, apple, gameOver]);
 
   useInterval(() => gameLoop(), speed);
   return (
     <div role="button" tabIndex="0" onKeyDown={(e) => moveSnake(e)}>
       <canvas
-        style={{ border: "1px solid white" }}
+        style={{boxSizing: "border-box", border: "1px solid white", width:`100%`, height: "90vh" }}
         ref={canvasRef}
-        width={`${CANVAS_SIZE[0]}px`}
-        height={`${CANVAS_SIZE[1]}px`}
+        // width={document.body.clientWidth}
+        // height={document.body.clientHeight}
+        
+        //height={`90vh`}
+        width={`${CANVAS_SIZE[0]}`}
+        height={`${CANVAS_SIZE[1]}`}
+        
       />
-      {gameOver && <div>GAME OVER!</div>}
+      {gameOver && <div style={{backgroundImage: Hud}}>GAME OVER!</div>}
       <button onClick={startGame}>Start</button>
     </div>
   );
