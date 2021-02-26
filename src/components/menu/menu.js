@@ -43,6 +43,7 @@ function Menu() {
     },
     { id: "Settings", title: "Settings" },
     { id: "About", title: "About" },
+    { id: "Records", title: "Records" },
   ];
   //console.log(styleObj)
   return (

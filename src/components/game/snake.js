@@ -11,7 +11,7 @@ import {
 import {useConfig} from "../config-file/config"
 import PlayTheme from "../music/playtheme.mp3"
 import Hud from "../music/doom/StatusBar.png"
-import useImage from "use-image"
+//import useImage from "use-image"
 //import { Image } from 'react-konva';
 
 
@@ -25,7 +25,7 @@ import useImage from "use-image"
 //   );
 // }
 const Snake = () => {
-  const [image] = useImage(Hud);
+  //const [image] = useImage(Hud);
   const canvasRef = useRef();
   const config = useConfig();
   

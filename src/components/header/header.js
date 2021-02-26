@@ -54,6 +54,7 @@ export default function SimpleMenu() {
         <Link to="/Start"><MenuItem onClick={handleClose}>Start game</MenuItem></Link>
         <Link to="/Settings"><MenuItem onClick={handleClose}>Settings</MenuItem></Link>
         <Link to="/About"><MenuItem onClick={handleClose}>About</MenuItem></Link>
+        <Link to="/Records"><MenuItem onClick={handleClose}>Records</MenuItem></Link>
       </Menu>
         <Typography variant="h6" className={classes.title}>
           Menu

@@ -8,6 +8,8 @@ import Music from "./components/music/music";
 import ConfigProvider from "./components/config-file/config"
 //import SoundButton from "./components/sound-button/sound-button"
 import Header from "./components/header/header"
+import Records from "./components/menu/records/records"
+import Footer from "./components/menu/footer/footer"
 
 //const SettingContext = React.createContext()
 
@@ -16,6 +18,7 @@ const App = () => {
     <ConfigProvider>
     <Router>
       <Header/>
+      <Footer/>
       {/* <SoundButton></SoundButton> */}
       <Route path="/" exact>
         <Menu ></Menu>
@@ -28,6 +31,9 @@ const App = () => {
       </Route>
       <Route path="/settings">
         <Settings/>
+      </Route>
+      <Route path="/records">
+        <Records/>
       </Route>
     </Router>
     </ConfigProvider>
