@@ -9,6 +9,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { useConfig } from "../../config-file/config";
+import MenuTheme from "../../music/menutheme.mp3";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -47,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DenseTable() {
   const classes = useStyles();
+  const config = useConfig();
+  config.trackHandler(MenuTheme);
   let rows = null;
 
   if ("records" in localStorage) {

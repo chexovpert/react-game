@@ -5,7 +5,7 @@ import {
   SNAKE_START,
   APPLE_START,
   SCALE,
-  SPEED,
+  //SPEED,
   DIRECTIONS,
 } from "../../snake-start";
 import { useConfig } from "../config-file/config";
@@ -66,8 +66,10 @@ const Snake = () => {
   const classes = useStyles();
   const foodSound = new Audio();
   foodSound.src = FoodSound;
+  foodSound.volume = config.soundVolume;
   const deathSound = new Audio();
   deathSound.src = DeathSound;
+  deathSound.volume = config.soundVolume;
 
   const hud = new Image();
   hud.src = Hud;
@@ -106,12 +108,12 @@ const Snake = () => {
 
   const startGame = () => {
     console.log(snakePosition);
-    config.musicHandler(PlayTheme);
+    config.trackHandler(PlayTheme);
     canvasRef.current.focus();
     setSnake(snakePosition);
     setApple(applePosition);
     setDir(dirValue);
-    setSpeed(SPEED);
+    setSpeed(config.speed);
     setGameStart(true);
     setGameOver(false);
     setScore(scoreValue);
@@ -162,7 +164,7 @@ const Snake = () => {
       event.keyCode <= 40 &&
       setDir(DIRECTIONS[event.keyCode]);
     event.keyCode === 32 && speed && setSpeed(null);
-    event.keyCode === 32 && !speed && setSpeed(SPEED);
+    event.keyCode === 32 && !speed && setSpeed(config.speed);
   };
 
   const createApple = () =>

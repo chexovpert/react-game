@@ -18,11 +18,8 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuTheme from "../../music/menutheme.mp3"
+import MenuTheme from "../../music/menutheme.mp3";
 //import { useConfig } from "../config-file/config";
-
-
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,14 +42,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default () => {
-    
   const classes = useStyles();
   const config = useConfig();
-  config.musicHandler(MenuTheme)
+  // const [difficulty, setDifficulty] = useState(config.speed);
+  //console.log(typeof config.speed);
+  config.trackHandler(MenuTheme);
   //const [sound, setSound] = useState(config.volume*100)
   const handleSoundChange = (event, newValue) => {
-    config.volumeHandler(newValue / 100);
-    config.volume = newValue / 100;
+    config.soundVolumeHandler(newValue / 100);
+  };
+  const handleMusicChange = (event, newValue) => {
+    config.musicVolumeHandler(newValue / 100);
+  };
+  const handleMusicToggle = () => {
+    config.musicHandler(!config.music);
+  };
+  const handleSoundToggle = () => {
+    config.soundHandler(!config.sound);
+  };
+  const handleSpeed = (event) => {
+    config.speedHandler(+event.target.value);
+    console.log(config.speed);
+    //setDifficulty(event.target.value);
   };
   // useEffect(()=> {
   //     console.log(config)
@@ -64,6 +75,8 @@ export default () => {
       <div>
         <FormControlLabel
           control={<Switch size="large" />}
+          checked={config.music}
+          onChange={handleMusicToggle}
           label="Music on/off"
         />
         <Typography id="continuous-slider" gutterBottom>
@@ -76,8 +89,8 @@ export default () => {
           <Grid item xs>
             <Slider
               style={{ width: "300px" }}
-              value={config.volume * 100}
-              onChange={handleSoundChange}
+              value={config.musicVolume * 100}
+              onChange={handleMusicChange}
               aria-labelledby="continuous-slider"
             />
           </Grid>
@@ -87,6 +100,8 @@ export default () => {
         </Grid>
         <FormControlLabel
           control={<Switch size="large" />}
+          checked={config.sound}
+          onChange={handleSoundToggle}
           label="Sounds on/off"
         />
         <Typography id="continuous-slider" gutterBottom>
@@ -99,7 +114,7 @@ export default () => {
           <Grid item xs>
             <Slider
               style={{ width: "300px" }}
-              value={config.volume * 100}
+              value={config.soundVolume * 100}
               onChange={handleSoundChange}
               aria-labelledby="continuous-slider"
             />
@@ -109,12 +124,12 @@ export default () => {
           </Grid>
         </Grid>
       </div>
-      <div>
+      {/* <div>
         <FormControlLabel control={<Switch size="large" />} label="Music" />
-      </div>
+      </div> */}
       <div>
         <FormControl component="fieldset">
-          <FormLabel component="legend">Difficulity</FormLabel>
+          <FormLabel component="legend">Background</FormLabel>
           <RadioGroup
             row
             aria-label="position"
@@ -122,21 +137,21 @@ export default () => {
             defaultValue="top"
           >
             <FormControlLabel
-              value="top"
+              value="0"
               control={<Radio color="primary" />}
-              label="Easy"
+              label="1"
               labelPlacement="top"
             />
             <FormControlLabel
-              value="start"
+              value="1"
               control={<Radio color="primary" />}
-              label="Medium"
+              label="2"
               labelPlacement="top"
             />
             <FormControlLabel
-              value="bottom"
+              value="2"
               control={<Radio color="primary" />}
-              label="Hard"
+              label="3"
               labelPlacement="top"
             />
           </RadioGroup>
@@ -183,25 +198,27 @@ export default () => {
         <FormControl component="fieldset">
           <FormLabel component="legend">Difficulity</FormLabel>
           <RadioGroup
+            value={config.speed}
+            onChange={handleSpeed}
             row
             aria-label="position"
             name="position"
             defaultValue="top"
           >
             <FormControlLabel
-              value="top"
+              value={300}
               control={<Radio color="primary" />}
               label="Easy"
               labelPlacement="top"
             />
             <FormControlLabel
-              value="start"
+              value={200}
               control={<Radio color="primary" />}
               label="Medium"
               labelPlacement="top"
             />
             <FormControlLabel
-              value="bottom"
+              value={100}
               control={<Radio color="primary" />}
               label="Hard"
               labelPlacement="top"

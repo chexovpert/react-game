@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styleObj from "./menu.module.scss";
 import Button from "@material-ui/core/Button";
-import MenuTheme from "../music/menutheme.mp3"
+import MenuTheme from "../music/menutheme.mp3";
 import { useConfig } from "../config-file/config";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,11 +27,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function Menu() {
   const classes = useStyles();
   const config = useConfig();
-  config.musicHandler(MenuTheme)
+  config.trackHandler(MenuTheme);
   const menuItems = [
     {
       id: "Start",
@@ -52,7 +51,7 @@ function Menu() {
       {menuItems.map((item) => {
         return <MenuItem props={item} key={item.id} />;
       })}
-      </Paper>
+    </Paper>
     // </section>
   );
 }

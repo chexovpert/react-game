@@ -15,45 +15,50 @@ export default () => {
   const config = useConfig();
   //console.log(config)
   //const [sound, setSound] = useState(config.soundOn)
-  console.log(MenuTheme)
+  console.log(MenuTheme);
   //const [musicSrc, setMusicSrc] = useState(config.music);
   const [music, setMusic] = useState(new Audio(config.music));
   //const [volume, setVolume] = useState(config.volume)
-  music.volume = config.sound;
+  music.volume = config.musicVolume;
   music.autoplay = true;
   music.loop = true;
 
   function toggleSound() {
-    config.soundHandler(!config.sound);
+    if (config.music || config.sound) {
+      config.musicHandler(false);
+      config.soundHandler(false);
+    } else if (!config.music && !config.sound) {
+      config.musicHandler(true);
+      config.soundHandler(true);
+    }
+    //config.musicHandler(!config.music);
     // config.soundOn = sound;
   }
+
   useEffect(() => {
-    music.volume = config.volume;
-  }, [config.volume]);
+    music.volume = config.musicVolume;
+  }, [config.musicVolume]);
+
   useEffect(() => {
-      music.src=config.music;
-      //setMusic(new Audio(config.music))
-    if (config.sound) {
-        music.play();
-      } else {
-        music.pause();
-      }
-  }, [config.music]);
-  useEffect(() => {
-    //config.sound = sound;
-    
-    console.log(config)
-    if (config.sound) {
+    music.src = config.track;
+    if (config.music) {
       music.play();
     } else {
       music.pause();
     }
-  }, [config.sound]);
+  }, [config.track]);
+  useEffect(() => {
+    if (config.music) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }, [config.music]);
 
   return (
     // <div className={styleObj.sound_btn} onClick={toggleSound} > { config.sound ? "Звук включен" : "Звук выключен"}</div>
     <Button onClick={toggleSound} variant="contained" color="secondary">
-      {config.sound ? <VolumeUp /> : <VolumeOffIcon />}
+      {config.music || config.sound ? <VolumeUp /> : <VolumeOffIcon />}
     </Button>
   );
 };
