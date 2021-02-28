@@ -8,15 +8,21 @@ import {
   SPEED,
   DIRECTIONS,
 } from "../../snake-start";
-import {useConfig} from "../config-file/config"
-import PlayTheme from "../music/playtheme.mp3"
-import Hud from "../music/doom/StatusBar.png"
+import { useConfig } from "../config-file/config";
+import PlayTheme from "../music/playtheme.mp3";
+import Hud from "../music/doom/StatusBar.png";
+import Map from "../music/map.jpg";
+import Button from "@material-ui/core/Button";
+import GameOver from "../menu/gameover/gameover";
+import { makeStyles } from "@material-ui/core/styles";
+import Head from "../sprites/STFGOD0.png";
+import Body from "../sprites/ARM1B0.png";
+import DeathSound from "../music/doom/dspldeth.wav";
+import FoodSound from "../music/doom/dspistol.wav";
 //import useImage from "use-image"
 //import { Image } from 'react-konva';
 
-
-// function SimpleApp() {  
-  
+// function SimpleApp() {
 
 //   // "image" will DOM image element or undefined
 
@@ -24,38 +30,139 @@ import Hud from "../music/doom/StatusBar.png"
 //     <Image image={image} />
 //   );
 // }
+
+const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  paper: {
+    position: "fixed",
+    top: "0px",
+    width: "auto",
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(620 + theme.spacing(6))]: {
+      width: 400,
+      //   marginLeft: theme.spacing(10),
+      // marginRight: theme.spacing(10),
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
+    marginTop: theme.spacing(30),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(
+      3
+    )}px`,
+  },
+}));
 const Snake = () => {
   //const [image] = useImage(Hud);
   const canvasRef = useRef();
   const config = useConfig();
-  
-  useEffect(()=> {
-    config.musicHandler(PlayTheme)
-    
-    
-  }, [])
+  const classes = useStyles();
+  const foodSound = new Audio();
+  foodSound.src = FoodSound;
+  const deathSound = new Audio();
+  deathSound.src = DeathSound;
 
-  const [snake, setSnake] = useState(SNAKE_START);
-  const [apple, setApple] = useState(APPLE_START);
-  const [dir, setDir] = useState([0, -1]);
+  const hud = new Image();
+  hud.src = Hud;
+  const map = new Image();
+  map.src = Map;
+  const head = new Image();
+  head.src = Head;
+  const body = new Image();
+  body.src = Body;
+  // useEffect(() => {
+  //   config.musicHandler(PlayTheme);
+  // }, []);
+  let snakePosition = null;
+  let applePosition = null;
+  let scoreValue = null;
+  let dirValue = null;
+  if ("snake" in localStorage) {
+    snakePosition = JSON.parse(localStorage.snake);
+    applePosition = JSON.parse(localStorage.apple);
+    dirValue = JSON.parse(localStorage.dir);
+    scoreValue = JSON.parse(localStorage.score);
+  } else {
+    snakePosition = SNAKE_START;
+    applePosition = APPLE_START;
+    scoreValue = 0;
+    dirValue = [0, -1];
+  }
+  const [snake, setSnake] = useState(snakePosition);
+  const [apple, setApple] = useState(applePosition);
+  const [dir, setDir] = useState(dirValue);
   const [speed, setSpeed] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+  const [gameStart, setGameStart] = useState(false);
+  const [score, setScore] = useState(scoreValue);
+  const [date, setDate] = useState(new Date());
 
   const startGame = () => {
-    setSnake(SNAKE_START);
-    setApple(APPLE_START);
-    setDir([0, -1]);
+    console.log(snakePosition);
+    config.musicHandler(PlayTheme);
+    canvasRef.current.focus();
+    setSnake(snakePosition);
+    setApple(applePosition);
+    setDir(dirValue);
     setSpeed(SPEED);
+    setGameStart(true);
     setGameOver(false);
+    setScore(scoreValue);
   };
 
   const endGame = () => {
+    setDate(new Date());
     setSpeed(null);
+    recordHandler(score, date);
+    localStorage.snake = JSON.stringify(SNAKE_START);
+    localStorage.apple = JSON.stringify(APPLE_START);
+    localStorage.score = JSON.stringify(0);
+    localStorage.dir = JSON.stringify([0, -1]);
+    soundHandler(deathSound);
     setGameOver(true);
   };
 
-  const moveSnake = ({ keyCode }) => {
-    keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode]);
+  const recordHandler = (score, date) => {
+    let records = null;
+    const currentScore = {
+      score: score,
+      date: `${date.toLocaleDateString()}`,
+      time: `${date.getHours()}:${date.getMinutes()}`,
+    };
+    if ("records" in localStorage) {
+      records = JSON.parse(localStorage.records);
+      records.push(currentScore);
+      records.sort(function (a, b) {
+        return b.score - a.score;
+      });
+      records.length = records.length > 10 ? 10 : records.length;
+    } else {
+      records = [];
+      records.push(currentScore);
+    }
+
+    localStorage.records = JSON.stringify(records);
+  };
+
+  const soundHandler = (sound) => {
+    if (config.sound) {
+      sound.play();
+    }
+  };
+  const moveSnake = (event) => {
+    event.preventDefault();
+    event.keyCode >= 37 &&
+      event.keyCode <= 40 &&
+      setDir(DIRECTIONS[event.keyCode]);
+    event.keyCode === 32 && speed && setSpeed(null);
+    event.keyCode === 32 && !speed && setSpeed(SPEED);
   };
 
   const createApple = () =>
@@ -67,7 +174,7 @@ const Snake = () => {
     if (
       piece[0] * SCALE >= CANVAS_SIZE[0] ||
       piece[0] < 0 ||
-      piece[1] * SCALE >= CANVAS_SIZE[1] ||
+      piece[1] * SCALE >= CANVAS_SIZE[1] - (CANVAS_SIZE[1] - SCALE * 14) ||
       piece[1] < 0
     ) {
       return true;
@@ -87,6 +194,9 @@ const Snake = () => {
         newApple = createApple();
       }
       setApple(newApple);
+      setScore(score + 1);
+
+      soundHandler(foodSound);
       return true;
     }
     return false;
@@ -106,44 +216,59 @@ const Snake = () => {
 
   useEffect(() => {
     const context = canvasRef.current.getContext("2d");
-    //context.width = document.body.clientWidth;
-    //context.height = document.body.clientHeight;
-    //console.log(hud)
-    
-    
-    //context.drawImage(hud, 100, 100)
     context.setTransform(SCALE, 0, 0, SCALE, 0, 0);
     context.clearRect(0, 0, CANVAS_SIZE[0], CANVAS_SIZE[1]);
-    const hud = new Image();
-    hud.src = 'https://s-media-cache-ak0.pinimg.com/236x/d7/b3/cf/d7b3cfe04c2dc44400547ea6ef94ba35.jpg';
-    
-    context.fillStyle = "pink";
-    snake.forEach(([x, y]) => context.fillRect(x, y, 1, 1));
-    //context.drawImage(hud, 100, 100)
-    hud.onload = function() {
-      context.drawImage(hud, 100, 100)
-} ()
+    context.drawImage(hud, 0, 14, 30, 4);
+    context.drawImage(map, 0, 0, 30, 14);
+    snake.forEach(([x, y], index) => {
+      if (index === 0) {
+        context.drawImage(head, x, y, 1, 1);
+      } else {
+        context.drawImage(body, x, y, 1, 1);
+      }
+    });
+    context.font = "2px Changa One";
+    context.fillText(score, 2, 16);
     context.fillStyle = "lightblue";
     context.fillRect(apple[0], apple[1], 1, 1);
-    
-  }, [snake, apple, gameOver]);
+    localStorage.snake = JSON.stringify(snake);
+    localStorage.apple = JSON.stringify(apple);
+    localStorage.score = JSON.stringify(score);
+    localStorage.dir = JSON.stringify(dir);
+  }, [snake, apple, score]);
 
   useInterval(() => gameLoop(), speed);
   return (
     <div role="button" tabIndex="0" onKeyDown={(e) => moveSnake(e)}>
       <canvas
-        style={{boxSizing: "border-box", border: "1px solid white", width:`100%`, height: "90vh" }}
+        style={{
+          boxSizing: "border-box",
+          border: "1px solid white",
+          width: `100%`,
+          height: "87vh",
+        }}
         ref={canvasRef}
-        // width={document.body.clientWidth}
-        // height={document.body.clientHeight}
-        
-        //height={`90vh`}
         width={`${CANVAS_SIZE[0]}`}
         height={`${CANVAS_SIZE[1]}`}
-        
+        tabindex="1"
       />
-      {gameOver && <div style={{backgroundImage: Hud}}>GAME OVER!</div>}
-      <button onClick={startGame}>Start</button>
+      {!gameStart && (
+        <div className={classes.wrapper}>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.paper}
+            onClick={startGame}
+          >
+            Start
+          </Button>
+        </div>
+      )}
+      {gameOver && (
+        <GameOver score={score} date={date} startHandler={startGame}>
+          GAME OVER!
+        </GameOver>
+      )}
     </div>
   );
 };
