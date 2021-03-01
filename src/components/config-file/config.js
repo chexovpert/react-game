@@ -5,6 +5,7 @@ const config = {
   musicOn: false,
   musicVolume: 1,
   arena: 0,
+  skin: 0,
   SPEED: 100,
 };
 const ConfigContext = React.createContext();
@@ -21,6 +22,7 @@ export const ConfigProvider = ({ children }) => {
   const [track, setTrack] = useState(null);
   const [speed, setSpeed] = useState(config.SPEED);
   const [map, setMap] = useState(config.arena);
+  const [skin, setSkin] = useState(config.skin);
 
   const localStorageHandler = (param) => {
     let localConfig = JSON.parse(localStorage.config);
@@ -54,6 +56,9 @@ export const ConfigProvider = ({ children }) => {
   const mapHandler = (number) => {
     setMap(number);
   };
+  const skinHandler = (skin) => {
+    setSkin(skin);
+  };
   return (
     <ConfigContext.Provider
       value={{
@@ -70,7 +75,9 @@ export const ConfigProvider = ({ children }) => {
         speed,
         speedHandler,
         map,
-        setMap
+        setMap,
+        skin,
+        skinHandler,
       }}
     >
       {children}

@@ -66,6 +66,9 @@ export default () => {
   const handleMap = (event) => {
     config.setMap(+event.target.value);
   };
+  const handleSkin = (event) => {
+    config.skinHandler(+event.target.value);
+  };
   // useEffect(()=> {
   //     console.log(config)
   // })
@@ -162,39 +165,36 @@ export default () => {
       </div>
 
       <div>
-        {/* <ButtonGroup color="primary" aria-label="outlined primary button group">
-          <Button>Easy</Button>
-          <Button>Medium</Button>
-          <Button>Hard</Button>
-        </ButtonGroup> */}
-        {/* <FormControlLabel
-          control={<Switch size="large" />}
-          label="Music on/off"
-        /> */}
-
-        {/* <Typography id="continuous-slider" gutterBottom>
-          Scale
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item>
-            <VolumeDown />
-          </Grid>
-          <Grid item xs>
-            <Slider
-              style={{ width: "300px" }}
-              value={config.volume * 100}
-              onChange={handleSoundChange}
-              aria-labelledby="continuous-slider"
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Doom Guy skin</FormLabel>
+          <RadioGroup
+            value={config.skin}
+            onChange={handleSkin}
+            row
+            aria-label="position"
+            name="position"
+            defaultValue="top"
+          >
+            <FormControlLabel
+              value={0}
+              control={<Radio color="primary" />}
+              label="1"
+              labelPlacement="top"
             />
-          </Grid>
-          <Grid item>
-            <VolumeUp />
-          </Grid>
-        </Grid> */}
-        {/* <FormControlLabel
-          control={<Switch size="large" />}
-          label="Sounds on/off"
-        /> */}
+            <FormControlLabel
+              value={1}
+              control={<Radio color="primary" />}
+              label="2"
+              labelPlacement="top"
+            />
+            {/* <FormControlLabel
+              value={100}
+              control={<Radio color="primary" />}
+              label="Hard"
+              labelPlacement="top"
+            /> */}
+          </RadioGroup>
+        </FormControl>
       </div>
       <div>
         {/* Other settings */}
