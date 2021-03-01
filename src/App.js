@@ -41,26 +41,22 @@ const App = () => {
       <ConfigProvider>
         <div className={styles.main}>
           <div className={styles.contentWrap}>
-            <Router>
-              <Header />
-
-              {/* <SoundButton></SoundButton> */}
-              <Route path="/" exact>
-                <Menu></Menu>
-              </Route>
-              <Route path="/Start" exact>
-                <Snake></Snake>
-              </Route>
-              <Route path="/about">
-                <About></About>
-              </Route>
-              <Route path="/settings">
-                <Settings />
-              </Route>
-              <Route path="/records">
-                <Records />
-              </Route>
-            </Router>
+            <Header />
+            <Route path="/" exact>
+              <Menu></Menu>
+            </Route>
+            <Route path="/Start" exact>
+              <Snake></Snake>
+            </Route>
+            <Route path="/about">
+              <About></About>
+            </Route>
+            <Route path="/settings">
+              <Settings />
+            </Route>
+            <Route path="/records">
+              <Records />
+            </Route>
           </div>
           <Footer />
         </div>
