@@ -62,8 +62,9 @@ export default () => {
   };
   const handleSpeed = (event) => {
     config.speedHandler(+event.target.value);
-    console.log(config.speed);
-    //setDifficulty(event.target.value);
+  };
+  const handleMap = (event) => {
+    config.setMap(+event.target.value);
   };
   // useEffect(()=> {
   //     console.log(config)
@@ -134,22 +135,24 @@ export default () => {
             row
             aria-label="position"
             name="position"
-            defaultValue="top"
+            //defaultValue="top"
+            value={config.map}
+            onChange={handleMap}
           >
             <FormControlLabel
-              value="0"
+              value={0}
               control={<Radio color="primary" />}
               label="1"
               labelPlacement="top"
             />
             <FormControlLabel
-              value="1"
+              value={1}
               control={<Radio color="primary" />}
               label="2"
               labelPlacement="top"
             />
             <FormControlLabel
-              value="2"
+              value={2}
               control={<Radio color="primary" />}
               label="3"
               labelPlacement="top"
@@ -169,7 +172,7 @@ export default () => {
           label="Music on/off"
         /> */}
 
-        <Typography id="continuous-slider" gutterBottom>
+        {/* <Typography id="continuous-slider" gutterBottom>
           Scale
         </Typography>
         <Grid container spacing={2}>
@@ -187,7 +190,7 @@ export default () => {
           <Grid item>
             <VolumeUp />
           </Grid>
-        </Grid>
+        </Grid> */}
         {/* <FormControlLabel
           control={<Switch size="large" />}
           label="Sounds on/off"

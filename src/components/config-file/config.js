@@ -20,6 +20,7 @@ export const ConfigProvider = ({ children }) => {
   const [music, setMusic] = useState(config.musicOn);
   const [track, setTrack] = useState(null);
   const [speed, setSpeed] = useState(config.SPEED);
+  const [map, setMap] = useState(config.arena);
 
   const localStorageHandler = (param) => {
     let localConfig = JSON.parse(localStorage.config);
@@ -50,6 +51,9 @@ export const ConfigProvider = ({ children }) => {
   const speedHandler = (speed) => {
     setSpeed(speed);
   };
+  const mapHandler = (number) => {
+    setMap(number);
+  };
   return (
     <ConfigContext.Provider
       value={{
@@ -65,6 +69,8 @@ export const ConfigProvider = ({ children }) => {
         trackHandler,
         speed,
         speedHandler,
+        map,
+        setMap
       }}
     >
       {children}

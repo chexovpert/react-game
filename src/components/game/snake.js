@@ -11,7 +11,9 @@ import {
 import { useConfig } from "../config-file/config";
 import PlayTheme from "../music/playtheme.mp3";
 import Hud from "../music/doom/StatusBar.png";
-import Map from "../music/map.jpg";
+import Map from "../music/map.png";
+import Map1 from "../music/map1.png";
+import Map2 from "../music/map2.png";
 import Button from "@material-ui/core/Button";
 import GameOver from "../menu/gameover/gameover";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,6 +21,15 @@ import Head from "../sprites/STFGOD0.png";
 import Body from "../sprites/ARM1B0.png";
 import DeathSound from "../music/doom/dspldeth.wav";
 import FoodSound from "../music/doom/dspistol.wav";
+import Skull from "../sprites/SKULA1.png";
+import Skull1 from "../sprites/SKULB1.png";
+import Skull2 from "../sprites/SKULC1.png";
+import Caco from "../sprites/HEADA1.png";
+import Caco1 from "../sprites/HEADB1.png";
+import Caco2 from "../sprites/HEADC1.png";
+import Zombie from "../sprites/SPOSA1.png";
+import Zombie1 from "../sprites/SPOSB1.png";
+import Zombie2 from "../sprites/SPOSC1.png";
 //import useImage from "use-image"
 //import { Image } from 'react-konva';
 
@@ -64,17 +75,59 @@ const Snake = () => {
   const canvasRef = useRef();
   const config = useConfig();
   const classes = useStyles();
+
+
   const foodSound = new Audio();
   foodSound.src = FoodSound;
   foodSound.volume = config.soundVolume;
+
+
   const deathSound = new Audio();
   deathSound.src = DeathSound;
   deathSound.volume = config.soundVolume;
 
+
   const hud = new Image();
   hud.src = Hud;
+
+
+  const maps=[Map, Map1, Map2]
   const map = new Image();
-  map.src = Map;
+  map.src = maps[config.map];
+
+
+  const skull = new Image();
+  skull.src = Skull;
+  const skull1 = new Image();
+  skull1.src = Skull1;
+  const skull2 = new Image();
+  skull2.src = Skull2;
+
+
+  const caco = new Image();
+  caco.src = Caco;
+  const caco1 = new Image();
+  caco1.src = Caco1;
+  const caco2 = new Image();
+  caco2.src = Caco2;
+
+
+  const zombie = new Image();
+  zombie.src = Zombie;
+  const zombie1 = new Image();
+  zombie1.src = Zombie1;
+  const zombie2 = new Image();
+  zombie2.src = Zombie2;
+
+  
+  const monster=[zombie, zombie1, zombie2]
+  const monster1=[skull, skull1, skull2]
+  const monster2=[caco, caco1, caco2];
+
+  const monsterslist=[monster, monster1, monster2]
+
+  //let currentMonster=monsters1;
+
   const head = new Image();
   head.src = Head;
   const body = new Image();
@@ -105,9 +158,10 @@ const Snake = () => {
   const [gameStart, setGameStart] = useState(false);
   const [score, setScore] = useState(scoreValue);
   const [date, setDate] = useState(new Date());
+  const [currentMonster, setCurrentMonster] = useState(monster);
 
   const startGame = () => {
-    console.log(snakePosition);
+    //console.log(snakePosition);
     config.trackHandler(PlayTheme);
     canvasRef.current.focus();
     setSnake(snakePosition);
@@ -130,7 +184,9 @@ const Snake = () => {
     soundHandler(deathSound);
     setGameOver(true);
   };
-
+  const monsterHandler = () => {
+    setCurrentMonster(monsterslist[(Math.floor(Math.random()*monsterslist.length))])
+  }
   const recordHandler = (score, date) => {
     let records = null;
     const currentScore = {
@@ -196,6 +252,7 @@ const Snake = () => {
         newApple = createApple();
       }
       setApple(newApple);
+      monsterHandler()
       setScore(score + 1);
 
       soundHandler(foodSound);
@@ -230,9 +287,10 @@ const Snake = () => {
       }
     });
     context.font = "2px Changa One";
+    context.fillStyle = "red";
     context.fillText(score, 2, 16);
-    context.fillStyle = "lightblue";
-    context.fillRect(apple[0], apple[1], 1, 1);
+    //
+    context.drawImage(currentMonster[Math.floor(Math.random()*(currentMonster.length))], apple[0], apple[1], 1, 1);
     localStorage.snake = JSON.stringify(snake);
     localStorage.apple = JSON.stringify(apple);
     localStorage.score = JSON.stringify(score);
