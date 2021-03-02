@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styleObj from "./about.module.scss";
+//import styleObj from "./about.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";

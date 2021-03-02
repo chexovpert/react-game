@@ -41,17 +41,6 @@ import Caco2 from "../sprites/HEADC1.png";
 import Zombie from "../sprites/SPOSA1.png";
 import Zombie1 from "../sprites/SPOSB1.png";
 import Zombie2 from "../sprites/SPOSC1.png";
-//import useImage from "use-image"
-//import { Image } from 'react-konva';
-
-// function SimpleApp() {
-
-//   // "image" will DOM image element or undefined
-
-//   return (
-//     <Image image={image} />
-//   );
-// }
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -233,9 +222,15 @@ const Snake = () => {
   };
   const moveSnake = (event) => {
     event.preventDefault();
-    event.keyCode >= 37 &&
-      event.keyCode <= 40 &&
+    if (event.keyCode === 37 && dirValue[0] !== 1) {
       setDir(DIRECTIONS[event.keyCode]);
+    } else if (event.keyCode === 38 && dirValue[1] !== 1) {
+      setDir(DIRECTIONS[event.keyCode]);
+    } else if (event.keyCode === 39 && dirValue[0] !== -1) {
+      setDir(DIRECTIONS[event.keyCode]);
+    } else if (event.keyCode === 40 && dirValue[1] !== -1) {
+      setDir(DIRECTIONS[event.keyCode]);
+    } 
     event.keyCode === 32 && speed && setSpeed(null);
     event.keyCode === 32 && !speed && setSpeed(config.speed);
   };

@@ -69,8 +69,8 @@ export default function DenseTable() {
             <TableRow>
               <TableCell>№</TableCell>
               <TableCell align="right">Score</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Time</TableCell>
+              <TableCell align="right">Date and time</TableCell>
+              {/* <TableCell align="right">Time</TableCell> */}
               {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
             </TableRow>
           </TableHead>
@@ -81,8 +81,8 @@ export default function DenseTable() {
                   {index + 1}
                 </TableCell>
                 <TableCell align="right">{row.score}</TableCell>
-                <TableCell align="right">{row.date}</TableCell>
-                <TableCell align="right">{row.time}</TableCell>
+                <TableCell align="right">{row.date} {row.time}</TableCell>
+                {/* <TableCell align="right">{row.time}</TableCell> */}
               </TableRow>
             ))}
           </TableBody>

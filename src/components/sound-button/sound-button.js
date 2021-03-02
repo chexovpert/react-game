@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useConfig } from "../config-file/config";
-import styleObj from "./sound.module.scss";
+//import styleObj from "./sound.module.scss";
 import MenuTheme from "../music/menutheme.mp3";
 import Button from "@material-ui/core/Button";
 import VolumeOffIcon from "@material-ui/icons/VolumeOff";

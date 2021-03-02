@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useConfig } from "../../config-file/config";
-import styleObj from "./settings.module.scss";
+//import styleObj from "./settings.module.scss";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
