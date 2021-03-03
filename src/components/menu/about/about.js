@@ -25,18 +25,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    flexGrow: "1",
     padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(
       3
     )}px`,
-    paperArrow: {
-      // padding: theme.spacing(2),
-      textAlign: "center",
-      color: theme.palette.text.secondary,
-      display: "flex",
-      justifyContent: "center",
-      //flexDirection: "column",
-      alignItems: "center",
-    },
+  },
+  paperArrow: {
+    //textAlign: "center",
+    //color: theme.palette.text.secondary,
+    display: "flex",
+    justifyContent: "center",
+    //alignItems: "center",
   },
 }));
 export default () => {
@@ -45,29 +44,36 @@ export default () => {
   config.trackHandler(MenuTheme);
   return (
     <Paper className={classes.paper} elevation={6}>
-      <Grid container spacing={3}>
+      <Grid
+        //spacing={0}
+        //direction="column"
+        //alignItems="center"
+        justify="center"
+        container
+        spacing={3}
+      >
         <Grid item xs={12}>
-          <Paper className={classes.paperArrow} elevation={6}>
+          <Paper elevation={6} className={classes.paperArrow}>
             <ArrowUpwardIcon />
           </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paperArrow}>
+          <Paper elevation={6} className={classes.paperArrow}>
             <ArrowBackIcon />
           </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paperArrow}>
-            <ArrowDownwardIcon className={classes.paperArrow} />
+          <Paper elevation={6} className={classes.paperArrow}>
+            <ArrowDownwardIcon />
           </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paperArrow}>
+          <Paper elevation={6} className={classes.paperArrow}>
             <ArrowForwardIcon />
           </Paper>
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paperArrow} elevation={6}>
+          <Paper elevation={6} className={classes.paperArrow}>
             SPACEBAR
           </Paper>
         </Grid>

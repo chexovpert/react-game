@@ -24,10 +24,6 @@ export const ConfigProvider = ({ children }) => {
   const [map, setMap] = useState(config.arena);
   const [skin, setSkin] = useState(config.skin);
 
-  const localStorageHandler = (param) => {
-    let localConfig = JSON.parse(localStorage.config);
-  };
-
   const soundVolumeHandler = (soundVolume) => {
     setSoundVolume(soundVolume);
   };

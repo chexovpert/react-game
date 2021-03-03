@@ -41,10 +41,7 @@ const useStyles = makeStyles((theme) => ({
 export default () => {
   const classes = useStyles();
   const config = useConfig();
-  // const [difficulty, setDifficulty] = useState(config.speed);
-  //console.log(typeof config.speed);
   config.trackHandler(MenuTheme);
-  //const [sound, setSound] = useState(config.volume*100)
   const handleSoundChange = (event, newValue) => {
     config.soundVolumeHandler(newValue / 100);
   };
@@ -66,13 +63,9 @@ export default () => {
   const handleSkin = (event) => {
     config.skinHandler(+event.target.value);
   };
-  // useEffect(()=> {
-  //     console.log(config)
-  // })
 
   return (
     <Paper className={classes.paper} elevation={6}>
-      {/* // <div className={`${styleObj.settings} ${styleObj.settings_shown}`}> */}
       <div>
         <FormControlLabel
           control={<Switch size="large" />}
@@ -125,9 +118,6 @@ export default () => {
           </Grid>
         </Grid>
       </div>
-      {/* <div>
-        <FormControlLabel control={<Switch size="large" />} label="Music" />
-      </div> */}
       <div>
         <FormControl component="fieldset">
           <FormLabel component="legend">Background</FormLabel>
@@ -184,12 +174,6 @@ export default () => {
               label="2"
               labelPlacement="top"
             />
-            {/* <FormControlLabel
-              value={100}
-              control={<Radio color="primary" />}
-              label="Hard"
-              labelPlacement="top"
-            /> */}
           </RadioGroup>
         </FormControl>
       </div>
@@ -232,7 +216,6 @@ export default () => {
           Menu
         </Button>
       </Link>
-      {/* </div> */}
     </Paper>
   );
 };
