@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-game/static/css/main.1e0646f0.chunk.css",
-    "main.js": "/react-game/static/js/main.0b2dd66f.chunk.js",
-    "main.js.map": "/react-game/static/js/main.0b2dd66f.chunk.js.map",
+    "main.js": "/react-game/static/js/main.54d2993d.chunk.js",
+    "main.js.map": "/react-game/static/js/main.54d2993d.chunk.js.map",
     "runtime-main.js": "/react-game/static/js/runtime-main.22424e3f.js",
     "runtime-main.js.map": "/react-game/static/js/runtime-main.22424e3f.js.map",
     "static/js/2.e598c8cb.chunk.js": "/react-game/static/js/2.e598c8cb.chunk.js",
@@ -22,6 +22,7 @@
     "static/media/SPOSB1.ddba62bd.png": "/react-game/static/media/SPOSB1.ddba62bd.png",
     "static/media/SPOSC1.e0a9210d.png": "/react-game/static/media/SPOSC1.e0a9210d.png",
     "static/media/STFGOD0.c11c4fbe.png": "/react-game/static/media/STFGOD0.c11c4fbe.png",
+    "static/media/StatusBar.9d18081c.png": "/react-game/static/media/StatusBar.9d18081c.png",
     "static/media/cover.635e9d2f.jpg": "/react-game/static/media/cover.635e9d2f.jpg",
     "static/media/dspistol.7799790b.wav": "/react-game/static/media/dspistol.7799790b.wav",
     "static/media/dspldeth.90424275.wav": "/react-game/static/media/dspldeth.90424275.wav",
@@ -40,6 +41,6 @@
     "static/js/runtime-main.22424e3f.js",
     "static/js/2.e598c8cb.chunk.js",
     "static/css/main.1e0646f0.chunk.css",
-    "static/js/main.0b2dd66f.chunk.js"
+    "static/js/main.54d2993d.chunk.js"
   ]
 }
