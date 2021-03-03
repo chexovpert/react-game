@@ -1,23 +1,20 @@
 import React from "react";
-import MenuTheme from "./menutheme.mp3";
-import config from "../config-file/config"
+import MenuTheme from "../../assets/music/menutheme.mp3";
+import config from "../config-file/config";
 
-const music = null
+const music = null;
 
 function init() {
   music = new Audio(MenuTheme);
   music.autoplay = true;
   music.loop = true;
-  //music.play();
-  // const btn=document.querySelector(".sound_btn")
-  // btn.addEventListener("click", play(music))
 }
 
 function play(music) {
   if (config.soundOn) {
-    music.play()
+    music.play();
   } else {
-    music.pause()
+    music.pause();
   }
 }
 

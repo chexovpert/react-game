@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { useConfig } from "../../config-file/config";
-import MenuTheme from "../../music/menutheme.mp3";
+import MenuTheme from "../../../assets/music/menutheme.mp3";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -34,18 +34,6 @@ const useStyles = makeStyles((theme) => ({
     )}px`,
   },
 }));
-
-// function createData(number, score, date, time) {
-//   return { number, score, date, time };
-// }
-
-// const rows = [
-//   createData('Frozen yoghurt', 159, 6.0, 24,),
-//   createData('Ice cream sandwich', 237, 9.0, 37 ),
-//   createData('Eclair', 262, 16.0, 24 ),
-//   createData('Cupcake', 305, 3.7, 67 ),
-//   createData('Gingerbread', 356, 16.0, 49),
-// ];
 
 export default function DenseTable() {
   const classes = useStyles();

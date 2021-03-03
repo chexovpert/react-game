@@ -1,57 +1,51 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useInterval } from "../../hooks/use-intervel/use-interval";
+import { useConfig } from "../config-file/config";
 import {
   CANVAS_SIZE,
   SNAKE_START,
   APPLE_START,
   SCALE,
-  //SPEED,
   DIRECTIONS,
-} from "../../snake-start";
-import { useConfig } from "../config-file/config";
-import PlayTheme from "../music/playtheme.mp3";
-import Hud from "../music/doom/StatusBar.png";
-import Map from "../music/map.png";
-import Map1 from "../music/map1.png";
-import Map2 from "../music/map2.png";
-import Button from "@material-ui/core/Button";
-import GameOver from "../menu/gameover/gameover";
+} from "./snake-start";
 import { makeStyles } from "@material-ui/core/styles";
+import GameOver from "../menu/gameover/gameover";
+import Button from "@material-ui/core/Button";
 
-import DeathSound from "../music/doom/dspldeth.wav";
-import FoodSound from "../music/doom/dspistol.wav";
+//импорт ассетов (уверен есть способ получше)
 
-import Head from "../sprites/STFGOD0.png";
-import Head1 from "../sprites/head2.png";
-import Body from "../sprites/ARM1B0.png";
-import Body1 from "../sprites/ARM2B0.png";
+//звуки
+import PlayTheme from "../../assets/music/playtheme.mp3";
+import DeathSound from "../../assets/music/dspldeth.wav";
+import FoodSound from "../../assets/music/dspistol.wav";
 
-import HudHead from "../sprites/hud1.png";
-import HudHead1 from "../sprites/hud2.png";
-import HudHead2 from "../sprites/hud3.png";
+//карты и hud
+import Hud from "../../assets/images/StatusBar.png";
 
-import GameOverHead from "../sprites/STFDEAD0.png";
+import HudHead from "../../assets/sprites/hud1.png";
+import HudHead1 from "../../assets/sprites/hud2.png";
+import HudHead2 from "../../assets/sprites/hud3.png";
 
-import Skull from "../sprites/SKULA1.png";
-import Skull1 from "../sprites/SKULB1.png";
-import Skull2 from "../sprites/SKULC1.png";
-import Caco from "../sprites/HEADA1.png";
-import Caco1 from "../sprites/HEADB1.png";
-import Caco2 from "../sprites/HEADC1.png";
-import Zombie from "../sprites/SPOSA1.png";
-import Zombie1 from "../sprites/SPOSB1.png";
-import Zombie2 from "../sprites/SPOSC1.png";
-//import useImage from "use-image"
-//import { Image } from 'react-konva';
+import Map from "../../assets/images/map.png";
+import Map1 from "../../assets/images/map1.png";
+import Map2 from "../../assets/images/map2.png";
 
-// function SimpleApp() {
+//спрайты змейки
+import Head from "../../assets/sprites/STFGOD0.png";
+import Head1 from "../../assets/sprites/head2.png";
+import Body from "../../assets/sprites/ARM1B0.png";
+import Body1 from "../../assets/sprites/ARM2B0.png";
 
-//   // "image" will DOM image element or undefined
-
-//   return (
-//     <Image image={image} />
-//   );
-// }
+//спрайты монстров
+import Skull from "../../assets/sprites/SKULA1.png";
+import Skull1 from "../../assets/sprites/SKULB1.png";
+import Skull2 from "../../assets/sprites/SKULC1.png";
+import Caco from "../../assets/sprites/HEADA1.png";
+import Caco1 from "../../assets/sprites/HEADB1.png";
+import Caco2 from "../../assets/sprites/HEADC1.png";
+import Zombie from "../../assets/sprites/SPOSA1.png";
+import Zombie1 from "../../assets/sprites/SPOSB1.png";
+import Zombie2 from "../../assets/sprites/SPOSC1.png";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -67,8 +61,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(3),
     [theme.breakpoints.up(620 + theme.spacing(6))]: {
       width: 400,
-      //   marginLeft: theme.spacing(10),
-      // marginRight: theme.spacing(10),
       marginLeft: "auto",
       marginRight: "auto",
     },
@@ -81,12 +73,13 @@ const useStyles = makeStyles((theme) => ({
     )}px`,
   },
 }));
+
 const Snake = () => {
-  //const [image] = useImage(Hud);
   const canvasRef = useRef();
   const config = useConfig();
   const classes = useStyles();
 
+  //инициализация ассетов(тож кривовато)
   const foodSound = new Audio();
   foodSound.src = FoodSound;
   foodSound.volume = config.soundVolume;
@@ -138,7 +131,6 @@ const Snake = () => {
 
   const HudHeads = [hudHead, hudHead1, hudHead2];
 
-  //let currentMonster=monsters1;
   const Heads = [Head, Head1];
   const head = new Image();
   head.src = Heads[config.skin];
@@ -146,9 +138,7 @@ const Snake = () => {
   const Bodies = [Body, Body1];
   const body = new Image();
   body.src = Bodies[config.skin];
-  // useEffect(() => {
-  //   config.musicHandler(PlayTheme);
-  // }, []);
+
   let snakePosition = null;
   let applePosition = null;
   let scoreValue = null;
@@ -164,6 +154,7 @@ const Snake = () => {
     scoreValue = 0;
     dirValue = [0, -1];
   }
+
   const [snake, setSnake] = useState(snakePosition);
   const [apple, setApple] = useState(applePosition);
   const [dir, setDir] = useState(dirValue);
@@ -175,7 +166,6 @@ const Snake = () => {
   const [currentMonster, setCurrentMonster] = useState(monster);
 
   const startGame = () => {
-    //console.log(snakePosition);
     config.trackHandler(PlayTheme);
     canvasRef.current.focus();
     setSnake(snakePosition);
@@ -199,11 +189,13 @@ const Snake = () => {
     soundHandler(deathSound);
     setGameOver(true);
   };
+
   const monsterHandler = () => {
     setCurrentMonster(
       monsterslist[Math.floor(Math.random() * monsterslist.length)]
     );
   };
+
   const recordHandler = (score, date) => {
     let records = null;
     const currentScore = {
@@ -222,7 +214,6 @@ const Snake = () => {
       records = [];
       records.push(currentScore);
     }
-
     localStorage.records = JSON.stringify(records);
   };
 
@@ -231,6 +222,7 @@ const Snake = () => {
       sound.play();
     }
   };
+
   const moveSnake = (event) => {
     event.preventDefault();
     event.keyCode >= 37 &&
@@ -271,7 +263,6 @@ const Snake = () => {
       setApple(newApple);
       monsterHandler();
       setScore(score + 1);
-
       soundHandler(foodSound);
       return true;
     }
@@ -286,7 +277,6 @@ const Snake = () => {
     if (!checkAppleCollision(snakeCopy)) {
       snakeCopy.pop();
     }
-
     setSnake(snakeCopy);
   };
 
@@ -313,7 +303,6 @@ const Snake = () => {
       4,
       4
     );
-    //
     context.drawImage(
       currentMonster[Math.floor(Math.random() * currentMonster.length)],
       apple[0],

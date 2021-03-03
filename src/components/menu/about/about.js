@@ -10,7 +10,7 @@ import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { useConfig } from "../../config-file/config";
-import MenuTheme from "../../music/menutheme.mp3";
+import MenuTheme from "../../../assets/music/menutheme.mp3";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

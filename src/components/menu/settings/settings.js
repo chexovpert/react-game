@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useConfig } from "../../config-file/config";
-import styleObj from "./settings.module.scss";
+//import styleObj from "./settings.module.scss";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import VolumeDown from "@material-ui/icons/VolumeDown";
 import VolumeUp from "@material-ui/icons/VolumeUp";
 import Switch from "@material-ui/core/Switch";
-import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuTheme from "../../music/menutheme.mp3";
-//import { useConfig } from "../config-file/config";
+import MenuTheme from "../../../assets/music/menutheme.mp3";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

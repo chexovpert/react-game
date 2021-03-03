@@ -3,10 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import Rslogo from "./rs_school_js.svg";
 import Link from "@material-ui/core/Link";
-// import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-// import RestoreIcon from "@material-ui/icons/Restore";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
-// import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const useStyles = makeStyles({
   root: {
@@ -22,13 +18,6 @@ const useStyles = makeStyles({
     height: "30px",
     paddingTop: "10px",
   },
-  // rslink: {
-  //   paddingTop: "20px",
-  // },
-
-  // .footerauthor > p {
-  //   margin: 5px;
-  // }
 
   footerauthor: {
     textDecoration: "none",
@@ -41,11 +30,6 @@ const useStyles = makeStyles({
     },
   },
 
-  // footerauthorHover: {
-  //   color: "lawngreen",
-  //   textShadow: "0 1px rgb(206, 252, 0)",
-  // },
-
   rslink: {
     marginRight: "30px",
     textDecoration: "none",
@@ -57,11 +41,6 @@ const useStyles = makeStyles({
       textDecoration: "none",
     },
   },
-
-  // .rslink > a:hover {
-  //   color: lawngreen;
-  //   text-shadow: 0 1px rgb(206, 252, 0);
-  // }
 });
 
 export default function SimpleBottomNavigation() {

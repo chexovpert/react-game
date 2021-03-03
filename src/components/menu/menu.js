@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styleObj from "./menu.module.scss";
 import Button from "@material-ui/core/Button";
-import MenuTheme from "../music/menutheme.mp3";
+import MenuTheme from "../../assets/music/menutheme.mp3";
 import { useConfig } from "../config-file/config";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -35,10 +35,7 @@ function Menu() {
     {
       id: "Start",
       title: "Start game",
-      listener: () => {
-        //go();
-        // showCover();
-      },
+      listener: () => {},
     },
     { id: "Settings", title: "Settings" },
     { id: "About", title: "About" },
@@ -46,22 +43,17 @@ function Menu() {
   ];
   //console.log(styleObj)
   return (
-    // <section className={`${styleObj.menu} ${styleObj.menu_shown}`}>
     <Paper className={classes.paper}>
       {menuItems.map((item) => {
         return <MenuItem props={item} key={item.id} />;
       })}
     </Paper>
-    // </section>
   );
 }
 
 function MenuItem({ props }) {
   return (
     <Link to={props.id}>
-      {/* <div id={props.id} onClick={props.listener}>
-        {props.title}
-      </div> */}
       <Button
         id={props.id}
         onClick={props.listener}

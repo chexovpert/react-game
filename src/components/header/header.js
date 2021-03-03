@@ -14,9 +14,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SoundButton from "../sound-button/sound-button";
 
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   flexGrow: 1,
-  // },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -76,15 +73,8 @@ export default function SimpleMenu() {
             Menu
           </Typography>
           <SoundButton />
-          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
     </div>
-    // <div>
-    //   <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-    //     Open Menu
-    //   </Button>
-
-    // </div>
   );
 }

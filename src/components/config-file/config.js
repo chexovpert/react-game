@@ -26,29 +26,23 @@ export const ConfigProvider = ({ children }) => {
 
   const localStorageHandler = (param) => {
     let localConfig = JSON.parse(localStorage.config);
-    //localConfig[param];
   };
 
   const soundVolumeHandler = (soundVolume) => {
     setSoundVolume(soundVolume);
-    //config.soundVolume = soundVolume;
   };
 
   const musicVolumeHandler = (musicVolume) => {
     setMusicVolume(musicVolume);
-    //config.musicVolume = musicVolume;
   };
   const soundHandler = (sound) => {
     setSound(sound);
-    //config.soundOn = sound;
   };
   const musicHandler = (music) => {
     setMusic(music);
-    //config.musicOn = music;
   };
   const trackHandler = (track) => {
     setTrack(track);
-    //config.musicOn = music;
   };
   const speedHandler = (speed) => {
     setSpeed(speed);

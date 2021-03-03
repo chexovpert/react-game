@@ -9,14 +9,12 @@ import Menu from "./components/menu/menu";
 import About from "./components/menu/about/about";
 import Settings from "./components/menu/settings/settings";
 import Snake from "./components/game/snake";
-import Music from "./components/music/music";
 import ConfigProvider from "./components/config-file/config";
-//import SoundButton from "./components/sound-button/sound-button"
 import Header from "./components/header/header";
 import Records from "./components/menu/records/records";
 import Footer from "./components/menu/footer/footer";
 import { makeStyles } from "@material-ui/core/styles";
-import Cover from "./components/music/cover.jpg";
+import Cover from "./assets/images/cover.jpg";
 
 //const SettingContext = React.createContext()
 const useStyles = makeStyles({

@@ -2,10 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-//import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-// import Input from "@material-ui/core/Input";
-// import InputLabel from "@material-ui/core/InputLabel";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -17,14 +14,8 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     top: "0px",
     width: "auto",
-    // marginLeft: theme.spacing(50),
-    // marginRight: theme.spacing(50),
-    //marginLeft: "35%",
-    //marginRight: "35%",
     [theme.breakpoints.up(620 + theme.spacing(6))]: {
       width: 400,
-      //   marginLeft: theme.spacing(50),
-      // marginRight: theme.spacing(50),
     },
     marginTop: theme.spacing(30),
     display: "flex",
@@ -34,12 +25,10 @@ const useStyles = makeStyles((theme) => ({
       3
     )}px`,
     paperArrow: {
-      // padding: theme.spacing(2),
       textAlign: "center",
       color: theme.palette.text.secondary,
       display: "flex",
       justifyContent: "center",
-      //flexDirection: "column",
       alignItems: "center",
     },
   },
@@ -68,16 +57,6 @@ export default (props) => {
             Score: {props.score}, Date: {props.date.toLocaleDateString()}, Time:
             {props.date.getHours()}:{props.date.getMinutes()}
           </p>
-          {/* <Input
-            value={""}
-            //onChange={handleChange}
-            name="textmask"
-            id="formatted-text-mask-input"
-            //inputComponent={TextMaskCustom}
-          />
-          <Button variant="contained" color="secondary">
-            Submit
-          </Button> */}
         </form>
 
         <Button
