@@ -301,7 +301,7 @@ const Snake = () => {
     });
     context.font = "2px Changa One";
     context.fillStyle = "red";
-    context.fillText(score, 2, 16);
+    context.fillText(score, 7, 16);
     context.drawImage(
       HudHeads[Math.floor(Math.random() * HudHeads.length)],
       13,
