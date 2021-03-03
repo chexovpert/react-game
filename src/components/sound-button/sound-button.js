@@ -6,11 +6,6 @@ import Button from "@material-ui/core/Button";
 import VolumeOffIcon from "@material-ui/icons/VolumeOff";
 import VolumeUp from "@material-ui/icons/VolumeUp";
 
-// let music = null
-// music = new Audio(MenuTheme);
-// music.autoplay = true;
-// music.loop = true;
-
 export default () => {
   const config = useConfig();
   const [music, setMusic] = useState(new Audio(config.music));

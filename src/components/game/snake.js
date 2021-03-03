@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import GameOver from "../menu/gameover/gameover";
 import Button from "@material-ui/core/Button";
 
+<<<<<<< HEAD
 //импорт ассетов (уверен есть способ получше)
 
 //звуки
@@ -46,6 +47,31 @@ import Caco2 from "../../assets/sprites/HEADC1.png";
 import Zombie from "../../assets/sprites/SPOSA1.png";
 import Zombie1 from "../../assets/sprites/SPOSB1.png";
 import Zombie2 from "../../assets/sprites/SPOSC1.png";
+=======
+import DeathSound from "../music/doom/dspldeth.wav";
+import FoodSound from "../music/doom/dspistol.wav";
+
+import Head from "../sprites/STFGOD0.png";
+import Head1 from "../sprites/head2.png";
+import Body from "../sprites/ARM1B0.png";
+import Body1 from "../sprites/ARM2B0.png";
+
+import HudHead from "../sprites/hud1.png";
+import HudHead1 from "../sprites/hud2.png";
+import HudHead2 from "../sprites/hud3.png";
+
+import GameOverHead from "../sprites/STFDEAD0.png";
+
+import Skull from "../sprites/SKULA1.png";
+import Skull1 from "../sprites/SKULB1.png";
+import Skull2 from "../sprites/SKULC1.png";
+import Caco from "../sprites/HEADA1.png";
+import Caco1 from "../sprites/HEADB1.png";
+import Caco2 from "../sprites/HEADC1.png";
+import Zombie from "../sprites/SPOSA1.png";
+import Zombie1 from "../sprites/SPOSB1.png";
+import Zombie2 from "../sprites/SPOSC1.png";
+>>>>>>> 579150b7258f9a3bab266ecb5f4f1310cf286328
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -225,9 +251,15 @@ const Snake = () => {
 
   const moveSnake = (event) => {
     event.preventDefault();
-    event.keyCode >= 37 &&
-      event.keyCode <= 40 &&
+    if (event.keyCode === 37 && dirValue[0] !== 1) {
       setDir(DIRECTIONS[event.keyCode]);
+    } else if (event.keyCode === 38 && dirValue[1] !== 1) {
+      setDir(DIRECTIONS[event.keyCode]);
+    } else if (event.keyCode === 39 && dirValue[0] !== -1) {
+      setDir(DIRECTIONS[event.keyCode]);
+    } else if (event.keyCode === 40 && dirValue[1] !== -1) {
+      setDir(DIRECTIONS[event.keyCode]);
+    } 
     event.keyCode === 32 && speed && setSpeed(null);
     event.keyCode === 32 && !speed && setSpeed(config.speed);
   };
